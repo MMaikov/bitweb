@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:3.13.7-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: bitweb_db
+      POSTGRES_PASSWORD: bitweb_db
+      POSTGRES_DB: bitweb_db
+    ports:
+      - "5432:5432"
+  core:
+    build: ./bitweb-core
+    depends_on:
+      - db
+      - rabbitmq
+    ports:
+      - "8080:8080"
+
+  worker:
+    build: ./bitweb-worker
+    depends_on:
+      - db
+      - rabbitmq
+
+  frontend:
+    build: ./bitweb-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - core
+      - worker

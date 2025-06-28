@@ -1,0 +1,9 @@
+[submodule "bitweb-core"]
+	path = bitweb-core
+	url = https://github.com/MMaikov/bitweb-core.git
+[submodule "bitweb-worker"]
+	path = bitweb-worker
+	url = https://github.com/MMaikov/bitweb-worker.git
+[submodule "bitweb-frontend"]
+	path = bitweb-frontend
+	url = https://github.com/MMaikov/bitweb-frontend.git
